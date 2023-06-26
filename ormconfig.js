@@ -2,7 +2,7 @@ const SnakeNamingStrategy = require('typeorm-naming-strategies').SnakeNamingStra
 const nodeEnvironment = process.env.NODE_ENV || "develop";
 
 module.exports = [{
-    name : 'bite_speed_backend',
+    name : 'default',
     type : 'postgres',
     host: process.env.DB_HOST || 'localhost',
     port: process.env.DB_PORT || 5432,
@@ -20,8 +20,8 @@ module.exports = [{
     ],
     "subscribers":
         nodeEnvironment === "develop"
-            ? ["src/subscriber/**/*.ts", "node_modules/kafka_publisher/lib/subscriber/*.js"]
-            : ["dist/subscriber/**/*.js", "node_modules/kafka_publisher/lib/subscriber/*.js"]
+            ? ["src/subscriber/**/*.ts"]
+            : ["dist/subscriber/**/*.js"]
     ,
     cli: {
         entitiesDir: 'src/entities',

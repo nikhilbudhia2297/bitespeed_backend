@@ -1,14 +1,14 @@
 import { Connection, createConnection } from "typeorm";
 
 export async function createDBConnection() {
-    return await DBConnectionFactory.getInstance();
+    return await DbConnectionFactory.getInstance();
 }
 export async function dbConnection() {
-    return (await DBConnectionFactory.getInstance()).dbConnection;
+    return (await DbConnectionFactory.getInstance()).dbConnection;
 }
 
-export class DBConnectionFactory {
-    private static instance: DBConnectionFactory;
+export class DbConnectionFactory {
+    private static instance: DbConnectionFactory;
     dbConnection: Connection | null;
 
     private constructor() {
@@ -16,16 +16,16 @@ export class DBConnectionFactory {
     }
 
     public static async getInstance() {
-        if (!DBConnectionFactory.instance) {
-            DBConnectionFactory.instance = new DBConnectionFactory();
-            await DBConnectionFactory.instance.setupPostgresConnection();
+        if (!DbConnectionFactory.instance) {
+            DbConnectionFactory.instance = new DbConnectionFactory();
+            await DbConnectionFactory.instance.setupPostgresConnection();
             console.log('loyalty db-connection object created')
         }
-        return DBConnectionFactory.instance;
+        return DbConnectionFactory.instance;
     }
 
     private async setupPostgresConnection() {
-        this.dbConnection= await createConnection('bite_speed_backend');
+        this.dbConnection= await createConnection();
     }
 
 }
