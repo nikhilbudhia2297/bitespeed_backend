@@ -8,7 +8,7 @@
     "tsc": "tsc",
     "typeorm": "npm run build && ts-node ./node_modules/typeorm/cli.js",
     "dev:server": "npm run build && nodemon -r dotenv/config src/server.ts",
-    "server": "tsc -p . && node dist/server.js"
+    "server": "tsc -p . && node ./dist/server.js"
   },
   "author": "nikhil budhia",
   "license": "ISC",
