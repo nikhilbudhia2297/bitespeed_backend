@@ -43,14 +43,19 @@ export class Contact{
     }
 
     setPhoneNumber(phone : string){
-        this.phoneNumber = phone;
+        if(phone){
+            this.phoneNumber = phone;
+        }
         return this;
     }
 
     setEmail(email : string){
-        this.email = email;
+        if(email){
+            this.email = email;
+        }
         return this;
     }
+
 
     setLinkPrecedence(precedence : LinkPrecedence){
         this.linkPrecedence = precedence;
