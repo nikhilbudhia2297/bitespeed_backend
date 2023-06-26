@@ -48,3 +48,16 @@ docker run -e NODE_ENV="production" \
      	--publish 3000:3000
      	identity-service
 ```
+
+### Accessing the api ###
+* Run the docker image
+* The server will be up on localhost:3000
+* Use the below CURL
+``` 
+curl --location 'http://localhost:3000/identify' \
+--header 'Content-Type: application/json' \
+--data '{
+    "email" : "abc",
+    "phoneNumber" : "123"
+}'
+```
