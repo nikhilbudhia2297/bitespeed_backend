@@ -82,4 +82,8 @@ export class Contact{
         return this.email;
     }
 
+    getCreatedAt(){
+        return this.createdAt;
+    }
+
 }

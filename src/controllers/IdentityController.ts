@@ -13,13 +13,13 @@ export class IdentityController{
         this.identityService = Container.get(IdentityService);
     }
 
-    @Post('/identity')
+    @Post('/identify')
     async getOrAddIdentity(@Body() body : IdentityRequestCL,
                            @Res() res : Response){
-        const response = await this.identityService.getOrAddIdentity(body);
-        if(response){
-            return res.status(200).send(response);
+        const serviceResponse = await this.identityService.getOrAddIdentity(body);
+        if(serviceResponse.responseCode == 200){
+            return res.status(200).send(serviceResponse.data);
         }
-        return res.status(500).send({ errorMsg : "Something went wrong " });
+        return res.status(serviceResponse.responseCode).send({ errorMsg : serviceResponse.responseMessage });
     }
 }

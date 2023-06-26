@@ -10,10 +10,10 @@ export class ContactRepository extends Repository<Contact>{
         return await connection.save(instance);
     }
 
-    async getByPhoneOrEmail(phone : string, email : string){
+    async getContactsByEmail(email : string){
+        if(!email) return [];
         return await this.createQueryBuilder('C')
-            .where('C.phoneNumber = :phone', {phone})
-            .orWhere('C.email = :email', {email})
+            .where('C.email = :email', {email})
             .getMany();
     }
 
@@ -21,11 +21,11 @@ export class ContactRepository extends Repository<Contact>{
         return await this.findOneOrFail(id);
     }
 
-    async getByPhoneAndEmail(phone : string, email : string){
+    async getContactsByPhone(phone : string){
+        if(!phone) return [];
         return await this.createQueryBuilder('C')
             .where('C.phoneNumber = :phone', {phone})
-            .andWhere('C.email = :email', {email})
-            .getOne();
+            .getMany();
     }
 
     async getContactsLinkedWithPrimaryId(primaryContactId : number){
