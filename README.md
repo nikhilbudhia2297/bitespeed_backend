@@ -28,21 +28,23 @@ npm run dev:server
 
 #### Docker Setup ####
 * Build docker image:
-  ```sudo docker build --tag identity-service```
+```
+  docker build . --tag identity-service
+```
+
 * Run image: (db used is a remotely hosted postgresql)
 ``` 
-sudo docker run --publish 3000:3000  --name identity-service \
-     	-e NODE_ENV="production" \	
-     	identity-service
+ docker run -e NODE_ENV='production' --publish 3000:3000 identity_service
 ```
+
 * Run image with ENV variables: (provide DB credentials and remember to run migration)
 ``` 
-sudo docker run --publish 3000:3000  --name identity-service \
-     	-e NODE_ENV="production" \	
+docker run -e NODE_ENV="production" \	
      	-e DB_HOST="DB_HOST" \
      	-e DB_PORT="DB_PORT" \
      	-e DB_USER="DB_USER" \
      	-e DB_PASS="DB_PASS" \
      	-e DB_NAME="DB_NAME" \
+     	--publish 3000:3000
      	identity-service
 ```
