@@ -9,10 +9,9 @@ export async function dbConnection() {
 
 export class DbConnectionFactory {
     private static instance: DbConnectionFactory;
-    dbConnection: Connection | null;
+    dbConnection: Connection;
 
     private constructor() {
-        this.dbConnection = null;
     }
 
     public static async getInstance() {
